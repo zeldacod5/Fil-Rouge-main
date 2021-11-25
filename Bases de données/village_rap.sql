@@ -79,7 +79,7 @@ CREATE TABLE customers(
 CREATE TABLE orders(
    ord_id INT AUTO_INCREMENT,
    ord_order_date DATETIME NOT NULL,
-   ord_bil_date VARCHAR(50),
+   ord_bil_date DATETIME,
    ord_payment_date DATETIME,
    ord_ship_date DATETIME,
    ord_reception_date DATETIME,
@@ -89,7 +89,7 @@ CREATE TABLE orders(
    ord_del_adress VARCHAR(50),
    ord_del_city VARCHAR(50),
    ord_del_countries VARCHAR(50),
-   ord_del_zipcode VARCHAR(5),
+   ord_del_zipcode VARCHAR(20),
    ord_additional_reduction DECIMAL(10,2),
    cus_id INT NOT NULL,
    PRIMARY KEY(ord_id),
@@ -101,7 +101,7 @@ CREATE TABLE product(
    pro_name VARCHAR(50) NOT NULL,
    pro_little_desc VARCHAR(20),
    pro_desc TEXT,
-   pro_ref VARCHAR(8) NOT NULL,
+   pro_ref VARCHAR(20) NOT NULL,
    pro_price DECIMAL(10,2) NOT NULL,
    pro_stock INT,
    pro_stock_alert INT NOT NULL,
@@ -191,3 +191,35 @@ VALUES
 INSERT INTO `orders` (`ord_id`;`ord_order_date`,`ord_bil_date`,`ord_payment_date`,`ord_ship_date`,`ord_reception_date`,`ord_status`,`ord_delivery_invoice`,`ord_dnote`,`ord_del_adress`,`ord_del_city`,`ord_del_countries`,`ord_del_zipcode`,`ord_additional_reduction`)
 VALUES
   (
+/* DROP TABLE IF EXISTS `myTable`;
+
+CREATE TABLE `myTable` (
+  `id` mediumint(8) unsigned NOT NULL auto_increment,
+  `ord_id` mediumint,
+  `ord_order_date` varchar(255),
+  `ord_bil_date` varchar(255),
+  `ord_payment_date` varchar(255),
+  `ord_ship_date` varchar(255),
+  `ord_reception_date` varchar(255),
+  `ord_status` mediumint default NULL,
+  `ord_delivery_invoice` varchar(255) default NULL,
+  `ord_dnote` TEXT default NULL,
+  `ord_del_adress` varchar(255) default NULL,
+  `ord_del_countries` varchar(100) default NULL,
+  `ord_del_zipcode` varchar(10) default NULL,
+  `numberrange` mediumint default NULL,
+  PRIMARY KEY (`id`)
+) AUTO_INCREMENT=1;
+
+INSERT INTO `myTable` (`ord_id`,`ord_order_date`,`ord_bil_date`,`ord_payment_date`,`ord_ship_date`,`ord_reception_date`,`ord_status`,`ord_delivery_invoice`,`ord_dnote`,`ord_del_adress`,`ord_del_countries`,`ord_del_zipcode`,`numberrange`)
+VALUES
+  (1,"May 9, 2021","Aug 24, 2021","May 20, 2022","Aug 30, 2021","Feb 24, 2021",6,"1","arcu et pede. Nunc sed orci lobortis augue scelerisque mollis.","P.O. Box 742, 1088 Consequat Road","Mexico","52450",10),
+  (2,"Feb 5, 2022","Oct 28, 2021","Feb 4, 2022","May 15, 2022","Jun 21, 2022",5,"0","molestie sodales. Mauris blandit enim consequat purus. Maecenas libero est,","P.O. Box 872, 6732 Magna. Ave","Germany","40204",19),
+  (3,"Feb 8, 2022","Mar 30, 2022","Mar 6, 2022","Aug 20, 2021","Jan 30, 2022",7,"0","non massa non ante bibendum ullamcorper. Duis cursus, diam at","428-3095 Vitae, St.","Peru","2886",19),
+  (4,"Oct 24, 2021","May 15, 2022","Feb 9, 2022","Jul 28, 2021","Mar 27, 2021",5,"1","nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse","4077 Tristique Street","United States","248322",24),
+  (5,"Feb 11, 2021","Feb 14, 2022","Nov 25, 2022","Feb 10, 2021","Oct 21, 2022",5,"1","malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit.","8525 A, Av.","France","25578",17);
+*/
+
+INSERT INTO `product` (`pro_id`,`pro_name`,`pro_little_desc`,`pro_desc`,`pro_price`,`pro_stock`,`pro_stock_alert`,`pro_add_date`,`pro_update_date`,`pro_picture`)
+VALUES
+ (1, )
