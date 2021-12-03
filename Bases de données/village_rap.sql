@@ -7,7 +7,7 @@ CREATE TABLE suppliers(
    sup_zipcode VARCHAR(20) NOT NULL,
    sup_phone VARCHAR(20) NOT NULL,
    sup_mail VARCHAR(75) NOT NULL,
-   sup_type VARCHAR(10) NOT NULL,
+   sup_type VARCHAR(3) NOT NULL,
    PRIMARY KEY(sup_id),
    UNIQUE(sup_phone),
    UNIQUE(sup_mail)
@@ -137,10 +137,10 @@ CREATE TABLE manages(
 
 INSERT INTO `suppliers` (`sup_id`,`sup_name`,`sup_city`,`sup_countries`,`sup_adress`,`sup_zipcode`,`sup_phone`,`sup_mail`,`sup_type`)
 VALUES
-  (1,"Mathieu Grimberg Production","Lille","France","7 rue du bois l'abbé pierre","59000","06 18 25 45 45","est.vitae@hotmail.ca",4),
-  (2,"Colin Gibbs Daniel","Amiens","France","54 rue des papillons","80000","03 25 26 45 45","dolor@yahoo.couk",9),
-  (3,"Caldwell Comptoir","Brest","France","1 rue perdues","45000","03 54 58 85 25","et.magnis.dis@yahoo.ca",5),
-  (4,"Hayden Stuart - Don de matériaux","Marseille","France","87 rue du vieux port","13000","03 25 25 45 65","neque@protonmail.ca",1),
+  (1,"Mathieu Grimberg Production","Lille","France","7 rue du bois l'abbé pierre","59000","06 18 25 45 45","est.vitae@hotmail.ca",1),
+  (2,"Boba Phett Prod","Amiens","France","54 rue des papillons","80000","03 25 26 45 45","dolor@yahoo.couk",1),
+  (3,"Caldwell Comptoir","Brest","France","1 rue perdues","45000","03 54 58 85 25","et.magnis.dis@yahoo.ca",2),
+  (4,"Papi Brossard - Don de matériaux","Marseille","France","87 rue du vieux port","13000","03 25 25 45 65","neque@protonmail.ca",2),
 
 INSERT INTO `categories` (`cat_id`,`cat_name`)
 VALUES
@@ -152,9 +152,11 @@ VALUES
 INSERT INTO `users` (`use_id`,`use_role`)
 VALUES
    (1,"admin"),
-   (2,"employés"),
-   (3,"client"),
-   (4,"visiteur");
+   (2,"staff"),
+   (3,"employé"),
+   (4,"client"),
+   (5,"fournisseur"),
+   (6,"visiteur");
 
 
 INSERT INTO `subcategories` (`sub_id`,`sub_name`,`cat_id`)
@@ -169,9 +171,9 @@ VALUES
 
 INSERT INTO `employees` (`emp_id`,`emp_firstname`,`emp_lastname`,`emp_city`,`emp_countries`,`emp_zipcode`,`emp_adress`,`emp_phone`,`emp_mail`,`emp_type`)
 VALUES
-  (1,"Loucas","Hérault","Amiens","France","80000","30 rue de Poulainville","08 47 46 38 01","vivamus.non@protonmail.net","pro"),
-  (2,"Marco-Miguel","Hérault","Lille","France","QL54 3XJ","55 rue Solférino","02 46 63 82 34","a.aliquet@protonmail.couk","pro"),
-  (3,"Jonas","Rovillon","Chateau-Thierry","France","02400","15 rue des sables","05 98 27 27 89","pellentesque.a@yahoo.edu","particulier"),
+  (1,"Loucas","Hérault","Amiens","France","80000","30 rue de Poulainville","08 47 46 38 01","vivamus.non@laposte.net","pro"),
+  (2,"Marco-Miguel","Hérault","Lille","France","QL54 3XJ","55 rue Solférino","02 46 63 82 34","a.aliquet@hotmail.com","pro"),
+  (3,"Jonas","Rovillon","Chateau-Thierry","France","02400","15 rue des sables","05 98 27 27 89","pellentesque.a@hotmail.fr","particulier"),
 
 /*manque peut être des infos colonne */
 INSERT INTO `customers` (`cus_id`,`cus_firstname`,`cus_lastname`,`cus_city`,`cus_countries`,`cus_zipcode`,`cus_adress`,`cus_phone`,`cus_mail`,`cus_type`)
@@ -220,6 +222,7 @@ VALUES
   (5,"Feb 11, 2021","Feb 14, 2022","Nov 25, 2022","Feb 10, 2021","Oct 21, 2022",5,"1","malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit.","8525 A, Av.","France","25578",17);
 */
 
-INSERT INTO `product` (`pro_id`,`pro_name`,`pro_little_desc`,`pro_desc`,`pro_price`,`pro_stock`,`pro_stock_alert`,`pro_add_date`,`pro_update_date`,`pro_picture`)
-VALUES
- (1, )
+-- INSERT INTO `product` (`pro_id`,`pro_name`,`pro_little_desc`,`pro_desc`,`pro_price`,`pro_stock`,`pro_stock_alert`,`pro_add_date`,`pro_update_date`,`pro_picture`)
+-- VALUES
+INSERT INTO `product`(`pro_name`, `pro_little_desc`, `pro_desc`, `pro_ref`, `pro_price`, `pro_stock`, `pro_stock_alert`, `pro_add_date`, `pro_update_date`, `pro_picture`, `sup_id`, `sub_id`)
+VALUES ('Raggasonic', 'Album ragga', 'Album ragga hip-hop 2000', '0505', 18.00, 10, 3, '2021-01-01', Null, '', 7, 4);
