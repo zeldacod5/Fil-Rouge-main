@@ -15,7 +15,7 @@ CREATE TABLE suppliers(
 
 CREATE TABLE categories(
    cat_id INT AUTO_INCREMENT,
-   cat_name VARCHAR(30) NOT NULL,
+   cat_name VARCHAR(50) NOT NULL,
    PRIMARY KEY(cat_id)
 );
 
@@ -96,7 +96,7 @@ CREATE TABLE orders(
    FOREIGN KEY(cus_id) REFERENCES customers(cus_id)
 );
 
-CREATE TABLE product(
+CREATE TABLE products(
    pro_id INT AUTO_INCREMENT,
    pro_name VARCHAR(50) NOT NULL,
    pro_little_desc VARCHAR(20),
