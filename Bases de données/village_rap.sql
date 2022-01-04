@@ -2,12 +2,12 @@ CREATE TABLE suppliers(
    sup_id INT AUTO_INCREMENT,
    sup_name VARCHAR(50) NOT NULL,
    sup_city VARCHAR(50) NOT NULL,
-   sup_countries VARCHAR(50) NOT NULL,
-   sup_adress VARCHAR(50) NOT NULL,
+   sup_countries VARCHAR(250) NOT NULL,
+   sup_adress VARCHAR(250) NOT NULL,
    sup_zipcode VARCHAR(20) NOT NULL,
    sup_phone VARCHAR(20) NOT NULL,
-   sup_mail VARCHAR(75) NOT NULL,
-   sup_type VARCHAR(3) NOT NULL,
+   sup_mail VARCHAR(255) NOT NULL,
+   sup_type VARCHAR(10) NOT NULL,
    PRIMARY KEY(sup_id),
    UNIQUE(sup_phone),
    UNIQUE(sup_mail)
@@ -21,13 +21,20 @@ CREATE TABLE categories(
 
 CREATE TABLE users(
    use_id INT AUTO_INCREMENT,
-   use_role VARCHAR(15) NOT NULL,
+   use_lastname VARCHAR(50) NOT NULL,
+   use_firstname VARCHAR(30) NOT NULL,
+   use_city VARCHAR(30) NOT NULL,
+   use_countries VARCHAR(30) NOT NULL,
+   use_zipcode VARCHAR(20) NOT NULL,
+   use_adress VARCHAR(50) NOT NULL,
+   use_phone VARCHAR(20) NOT NULL,
+   use_mail VARCHAR(75) NOT NULL,
    PRIMARY KEY(use_id)
 );
 
 CREATE TABLE subcategories(
    sub_id INT AUTO_INCREMENT,
-   sub_name VARCHAR(30) NOT NULL,
+   sub_name VARCHAR(50) NOT NULL,
    cat_id INT NOT NULL,
    PRIMARY KEY(sub_id),
    FOREIGN KEY(cat_id) REFERENCES categories(cat_id)
@@ -35,14 +42,7 @@ CREATE TABLE subcategories(
 
 CREATE TABLE employees(
    emp_id INT AUTO_INCREMENT,
-   emp_firstname VARCHAR(30) NOT NULL,
-   emp_lastname VARCHAR(30) NOT NULL,
-   emp_city VARCHAR(30) NOT NULL,
-   emp_countries VARCHAR(30) NOT NULL,
-   emp_zipcode VARCHAR(20) NOT NULL,
-   emp_adress VARCHAR(50) NOT NULL,
-   emp_phone VARCHAR(20) NOT NULL,
-   emp_mail VARCHAR(75) NOT NULL,
+
    emp_type VARCHAR(10),
    use_id INT NOT NULL,
    sup_id INT NOT NULL,
@@ -56,16 +56,8 @@ CREATE TABLE employees(
 
 CREATE TABLE customers(
    cus_id INT AUTO_INCREMENT,
-   cus_lastname VARCHAR(30) NOT NULL,
-   cus_firstname VARCHAR(30) NOT NULL,
-   cus_city VARCHAR(30) NOT NULL,
-   cus_countries VARCHAR(30) NOT NULL,
-   cus_zipcode VARCHAR(20) NOT NULL,
-   cus_adress VARCHAR(50) NOT NULL,
-   cus_phone VARCHAR(20),
-   cus_mail VARCHAR(75) NOT NULL,
    cus_type BOOLEAN NOT NULL,
-   cus_coef DECIMAL(3,2) NOT NULL,
+   cus_coef DECIMAL(10,2) NOT NULL,
    use_id INT NOT NULL,
    emp_id INT NOT NULL,
    PRIMARY KEY(cus_id),
@@ -86,7 +78,7 @@ CREATE TABLE orders(
    ord_status VARCHAR(10),
    ord_delivery_invoice BOOLEAN NOT NULL,
    ord_dnote TEXT NOT NULL,
-   ord_del_adress VARCHAR(50),
+   ord_del_adress VARCHAR(255),
    ord_del_city VARCHAR(50),
    ord_del_countries VARCHAR(50),
    ord_del_zipcode VARCHAR(20),
@@ -137,16 +129,16 @@ CREATE TABLE manages(
 
 INSERT INTO `suppliers` (`sup_id`,`sup_name`,`sup_city`,`sup_countries`,`sup_adress`,`sup_zipcode`,`sup_phone`,`sup_mail`,`sup_type`)
 VALUES
-  (1,"Mathieu Grimberg Production","Lille","France","7 rue du bois l'abbé pierre","59000","06 18 25 45 45","est.vitae@hotmail.ca",1),
-  (2,"Boba Phett Prod","Amiens","France","54 rue des papillons","80000","03 25 26 45 45","dolor@yahoo.couk",1),
-  (3,"Caldwell Comptoir","Brest","France","1 rue perdues","45000","03 54 58 85 25","et.magnis.dis@yahoo.ca",2),
-  (4,"Papi Brossard - Don de matériaux","Marseille","France","87 rue du vieux port","13000","03 25 25 45 65","neque@protonmail.ca",2),
+   (1,"Mathieu Grimberg Production","Lille","France","7 rue du bois l'abbé pierre","59000","06 18 25 45 45","est.vitae@hotmail.ca",1),
+   (2,"Boba Phett Prod","Amiens","France","54 rue des papillons","80000","03 25 26 45 45","dolor@yahoo.couk",1),
+   (3,"Caldwell Comptoir","Brest","France","1 rue perdues","45000","03 54 58 85 25","et.magnis.dis@yahoo.ca",2),
+   (4,"Papi Brossard - Don de matériaux","Marseille","France","87 rue du vieux port","13000","03 25 25 45 65","neque@protonmail.ca",2),
 
 INSERT INTO `categories` (`cat_id`,`cat_name`)
 VALUES
-  (1,"Rock"),
-  (2,"Reggea"),
-  (3,"Rap");
+   (1,"Rock"),
+   (2,"Reggea"),
+   (3,"Rap");
 
 
 INSERT INTO `users` (`use_id`,`use_role`)
@@ -171,28 +163,28 @@ VALUES
 
 INSERT INTO `employees` (`emp_id`,`emp_firstname`,`emp_lastname`,`emp_city`,`emp_countries`,`emp_zipcode`,`emp_adress`,`emp_phone`,`emp_mail`,`emp_type`)
 VALUES
-  (1,"Loucas","Hérault","Amiens","France","80000","30 rue de Poulainville","08 47 46 38 01","vivamus.non@laposte.net","pro"),
-  (2,"Marco-Miguel","Hérault","Lille","France","QL54 3XJ","55 rue Solférino","02 46 63 82 34","a.aliquet@hotmail.com","pro"),
-  (3,"Jonas","Rovillon","Chateau-Thierry","France","02400","15 rue des sables","05 98 27 27 89","pellentesque.a@hotmail.fr","particulier"),
+   (1,"Loucas","Hérault","Amiens","France","80000","30 rue de Poulainville","08 47 46 38 01","vivamus.non@laposte.net","pro"),
+   (2,"Marco-Miguel","Hérault","Lille","France","QL54 3XJ","55 rue Solférino","02 46 63 82 34","a.aliquet@hotmail.com","pro"),
+   (3,"Jonas","Rovillon","Chateau-Thierry","France","02400","15 rue des sables","05 98 27 27 89","pellentesque.a@hotmail.fr","particulier"),
 
 /*manque peut être des infos colonne */
 INSERT INTO `customers` (`cus_id`,`cus_firstname`,`cus_lastname`,`cus_city`,`cus_countries`,`cus_zipcode`,`cus_adress`,`cus_phone`,`cus_mail`,`cus_type`)
 VALUES
-  (1,"Montana","Coleman","North Waziristan","China","25099","340-3914 Maecenas Avenue","05 29 43 73 76","consectetuer@outlook.org","0"),
-  (2,"Chaim","Nichols","Motala","Brazil","553136","Ap #952-9106 Suspendisse St.","09 60 46 55 44","sed@protonmail.com","0"),
-  (3,"Addison","Guerra","Yopal","Sweden","154289","4321 Maecenas Av.","07 18 77 62 54","ullamcorper.velit@hotmail.edu","1"),
-  (4,"Sasha","Horne","Cà Mau","Netherlands","50203","P.O. Box 462, 7974 Cum Av.","04 28 14 43 87","integer.vitae@aol.net","1"),
-  (5,"Shelby","Waters","Burns Lake","Sweden","515634","Ap #582-5536 Purus. Ave","01 36 07 14 18","id.risus@aol.org","1");
-  (6,"Amena","Cortez","Fort Good Hope","Russian Federation","103508","Ap #326-1196 Nunc Av.","05 67 31 15 72","euismod.et.commodo@outlook.org","0"),
-  (7,"Fitzgerald","Wood","San Pablo","Poland","28338","Ap #265-8129 Luctus Street","09 17 34 76 87","eu.dolor@hotmail.edu","1"),
-  (8,"Berk","Downs","Recklinghausen","Indonesia","31226-32625","Ap #568-6607 Dui. Rd.","01 28 12 17 44","dignissim@google.edu","1"),
-  (9,"Lane","Sargent","Moncton","United Kingdom","861667","Ap #203-5117 Sapien Rd.","03 19 40 44 63","morbi.tristique@protonmail.net","1"),
-  (10,"Alexis","Powers","Pskov","Pakistan","B7Z 1C8","891-6336 Lorem Street","07 16 35 78 52","aliquet@google.edu","1");
+   (1,"Montana","Coleman","North Waziristan","China","25099","340-3914 Maecenas Avenue","05 29 43 73 76","consectetuer@outlook.org","0"),
+   (2,"Chaim","Nichols","Motala","Brazil","553136","Ap #952-9106 Suspendisse St.","09 60 46 55 44","sed@protonmail.com","0"),
+   (3,"Addison","Guerra","Yopal","Sweden","154289","4321 Maecenas Av.","07 18 77 62 54","ullamcorper.velit@hotmail.edu","1"),
+   (4,"Sasha","Horne","Cà Mau","Netherlands","50203","P.O. Box 462, 7974 Cum Av.","04 28 14 43 87","integer.vitae@aol.net","1"),
+   (5,"Shelby","Waters","Burns Lake","Sweden","515634","Ap #582-5536 Purus. Ave","01 36 07 14 18","id.risus@aol.org","1");
+   (6,"Amena","Cortez","Fort Good Hope","Russian Federation","103508","Ap #326-1196 Nunc Av.","05 67 31 15 72","euismod.et.commodo@outlook.org","0"),
+   (7,"Fitzgerald","Wood","San Pablo","Poland","28338","Ap #265-8129 Luctus Street","09 17 34 76 87","eu.dolor@hotmail.edu","1"),
+   (8,"Berk","Downs","Recklinghausen","Indonesia","31226-32625","Ap #568-6607 Dui. Rd.","01 28 12 17 44","dignissim@google.edu","1"),
+   (9,"Lane","Sargent","Moncton","United Kingdom","861667","Ap #203-5117 Sapien Rd.","03 19 40 44 63","morbi.tristique@protonmail.net","1"),
+   (10,"Alexis","Powers","Pskov","Pakistan","B7Z 1C8","891-6336 Lorem Street","07 16 35 78 52","aliquet@google.edu","1");
 
 /*manque peut être des infos colonne*/
 INSERT INTO `orders` (`ord_id`;`ord_order_date`,`ord_bil_date`,`ord_payment_date`,`ord_ship_date`,`ord_reception_date`,`ord_status`,`ord_delivery_invoice`,`ord_dnote`,`ord_del_adress`,`ord_del_city`,`ord_del_countries`,`ord_del_zipcode`,`ord_additional_reduction`)
 VALUES
-  (
+   (
 /* DROP TABLE IF EXISTS `myTable`;
 
 CREATE TABLE `myTable` (
